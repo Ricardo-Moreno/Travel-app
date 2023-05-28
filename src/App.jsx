@@ -12,7 +12,7 @@ function App() {
         <div className="app-container">
           <Navbar />
           <Routes>
-            <Route path="/*" element={<DestinationPage />} />
+            <Route path="/" element={<DestinationPage />} />
             <Route path="/form" element={<AddDestinationForm />} />
             <Route
               path="/destination/:id"
