@@ -13,7 +13,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/travelPrueba/" element={<DestinationPage />} />
-            <Route path="/form" element={<AddDestinationForm />} />
+            <Route path="/travelPrueba/form" element={<AddDestinationForm />} />
             <Route
               path="/destination/:id"
               element={<DestinationDetailsPage />}

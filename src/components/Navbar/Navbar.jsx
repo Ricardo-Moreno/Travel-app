@@ -3,12 +3,13 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 import logo from "../../assets/logo.png";
+import { Link, NavLink } from "react-router-dom";
 
 const navigation = [
-  { name: "Mis viajes", href: "#", current: true },
-  { name: "Vuelos", href: "#", current: false },
-  { name: "Paquetes", href: "#", current: false },
-  { name: "Alquileres", href: "#", current: false },
+  { name: "Mis viajes", to: "/travelPrueba/", current: true },
+  { name: "Sugerir Destinos", to: "/travelPrueba/form", current: false },
+  { name: "Paquetes", to: "/travelPrueba/", current: false },
+  { name: "Alquileres", to: "/travelPrueba/", current: false },
 ];
 
 function classNames(...classes) {
@@ -49,19 +50,20 @@ export default function Navbar() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <NavLink
                         key={item.name}
-                        href={item.href}
+                        to={item.to}
+                        activeClassName="bg-gray-900 text-white"
                         className={classNames(
-                          item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          {
+                            "bg-gray-900 text-white": item.current,
+                          },
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
-                        aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
-                      </a>
+                      </NavLink>
                     ))}
                   </div>
                 </div>
@@ -147,8 +149,8 @@ export default function Navbar() {
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
-                  as="a"
-                  href={item.href}
+                  as={Link}
+                  to={item.to}
                   className={classNames(
                     item.current
                       ? "bg-gray-900 text-white"

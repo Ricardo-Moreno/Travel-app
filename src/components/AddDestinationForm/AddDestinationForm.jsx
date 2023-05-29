@@ -1,58 +1,92 @@
-import { PhotoIcon } from "@heroicons/react/24/solid";
+// import { PhotoIcon } from "@heroicons/react/24/solid";
+import { useState } from "react";
+import FirebaseDataUploader from "../FirebaseDataUploader/FirebaseDataUploader";
 
 export default function AddDestinationForm() {
+  const [formData, setFormData] = useState({
+    destination: "",
+    about: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    country: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+  // const handleImageChange = (e) => {
+  //   const file = e.target.files[0];
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     image: file, // Actualiza el campo de imagen en el estado formData
+  //   }));
+  // };
+
   return (
-    <form className="mx-auto max-w-2xl">
-      <div className="space-y-12">
-        <div className="border-b border-gray-900/10 pb-12">
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div className="sm:col-span-4">
-              <label
-                htmlFor="destination"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Nombre del desnito que desea sugerir
-              </label>
-              <div className="mt-2">
-                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                  <input
-                    type="text"
-                    name="destination"
-                    id="destination"
-                    autoComplete="destination"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    placeholder=""
+    <>
+      <form className="mx-auto max-w-2xl" onSubmit={handleSubmit}>
+        <div className="space-y-12">
+          <div className="border-b border-gray-900/10 pb-12">
+            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="destination"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Nombre del destino que desea sugerir
+                </label>
+                <div className="mt-2">
+                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                    <input
+                      type="text"
+                      name="destination"
+                      id="destination"
+                      autoComplete="destination"
+                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      placeholder=""
+                      value={formData.destination || ""}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-span-full">
+                <label
+                  htmlFor="about"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Sugerencias
+                </label>
+                <div className="mt-2">
+                  <textarea
+                    id="about"
+                    name="about"
+                    rows={3}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    defaultValue={formData.about}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
-            </div>
 
-            <div className="col-span-full">
-              <label
-                htmlFor="about"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Sugerencias
-              </label>
-              <div className="mt-2">
-                <textarea
-                  id="about"
-                  name="about"
-                  rows={3}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  defaultValue={""}
-                />
-              </div>
-            </div>
-
-            <div className="col-span-full">
-              <label
-                htmlFor="cover-photo"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Puedes Enviarnos una foto del desnito al que quieres ir
-              </label>
-              <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+              <div className="col-span-full">
+                <label
+                  htmlFor="cover-photo"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Puedes Enviarnos una foto del desnito al que quieres ir
+                </label>
+                {/* <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                 <div className="text-center">
                   <PhotoIcon
                     className="mx-auto h-12 w-12 text-gray-300"
@@ -69,6 +103,7 @@ export default function AddDestinationForm() {
                         name="file-upload"
                         type="file"
                         className="sr-only"
+                        onChange={handleImageChange}
                       />
                     </label>
                     <p className="pl-1">or drag and drop</p>
@@ -77,123 +112,100 @@ export default function AddDestinationForm() {
                     PNG, JPG, GIF up to 10MB
                   </p>
                 </div>
+              </div> */}
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="border-b border-gray-900/10 pb-12">
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="first-name"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Nombre
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="first-name"
-                  id="first-name"
-                  autoComplete="given-name"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="last-name"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Apellido
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="last-name"
-                  id="last-name"
-                  autoComplete="family-name"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-4">
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Email address
-              </label>
-              <div className="mt-2">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="country"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Pais
-              </label>
-              <div className="mt-2">
-                <select
-                  id="country"
-                  name="country"
-                  autoComplete="country-name"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+          <div className="border-b border-gray-900/10 pb-12">
+            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="first-name"
+                  className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  <option>United States</option>
-                  <option>Canada</option>
-                  <option>Mexico</option>
-                </select>
+                  Nombre
+                </label>
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    name="firstName"
+                    id="firstN"
+                    autoComplete="given-name"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    value={formData.firstName || ""}
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className="sm:col-span-2 sm:col-start-1">
-              <label
-                htmlFor="city"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                City
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="city"
-                  id="city"
-                  autoComplete="address-level2"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="last-name"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Apellido
+                </label>
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    name="lastName"
+                    id="lastN"
+                    autoComplete="family-name"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    value={formData.lastName || ""}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Email address
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="email-usuario"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    value={formData.email || ""}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="pais"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Pais
+                </label>
+                <div className="mt-2">
+                  <select
+                    id="country"
+                    name="country" // Cambiado de "pais" a "country"
+                    autoComplete="country-name"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                    value={formData.country || ""} // Cambiado de "pais" a "country"
+                    onChange={handleChange}
+                  >
+                    <option>United States</option>
+                    <option>Canada</option>
+                    <option>Mexico</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="mt-8 flex justify-end space-x-4">
-        <button
-          type="button"
-          className="text-sm font-semibold leading-6 text-gray-900"
-        >
-          Cancelar
-        </button>
-        <button
-          type="submit"
-          className="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          Guardar
-        </button>
-      </div>
-    </form>
+      </form>
+      <FirebaseDataUploader formData={formData} />
+    </>
   );
 }
