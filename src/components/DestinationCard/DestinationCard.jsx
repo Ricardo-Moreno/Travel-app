@@ -16,7 +16,7 @@ const DestinationCard = ({ destination }) => {
   };
 
   return (
-    <div className="group relative" onClick={handleClick}>
+    <div className="group relative">
       <Carousel showThumbs={false} dynamicHeight={true}>
         {destination.imageUrl.map((image, index) => (
           <div key={index}>
@@ -28,15 +28,17 @@ const DestinationCard = ({ destination }) => {
           </div>
         ))}
       </Carousel>
-      <h3 className="mt-6 text-sm text-gray-500">
-        {/* <a href={destination.href}> */}
-        <span className="absolute inset-0" />
-        {destination.title}
-        {/* </a> */}
-      </h3>
-      <p className="text-base font-semibold text-gray-900">
-        {destination.description}
-      </p>
+      <div onClick={handleClick}>
+        <h3 className="mt-6 text-sm text-gray-500">
+          {/* <a href={destination.href}> */}
+          <span className="absolute inset-0" />
+          {destination.title}
+          {/* </a> */}
+        </h3>
+        <p className="text-base font-semibold text-gray-900">
+          {destination.description}
+        </p>
+      </div>
 
       {showDialog && (
         <CardDetailDialog

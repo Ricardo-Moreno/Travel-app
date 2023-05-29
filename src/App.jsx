@@ -3,7 +3,7 @@ import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import AddDestinationForm from "./components/AddDestinationForm/AddDestinationForm";
 import DestinationPage from "./components/DestinationsPage/DestinationPage";
-import DestinationDetailsPage from "./components/DestinationDetailsPage/DestinationDetailsPage";
+// import DestinationDetailsPage from "./components/DestinationDetailsPage/DestinationDetailsPage";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/travelPrueba/" element={<DestinationPage />} />
           <Route path="/travelPrueba/form" element={<AddDestinationForm />} />
-          <Route path="/destination/:id" element={<DestinationDetailsPage />} />
+          {/* <Route path="/destination/:id" element={<DestinationDetailsPage />} /> */}
         </Routes>
       </div>
     </BrowserRouter>

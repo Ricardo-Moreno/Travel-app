@@ -1,28 +1,25 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import PropTypes from "prop-types";
 import StarRating from "../StartRaiting/StartRating"; // Componente de las estrellas de puntuación
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
-
-const MyComponent = React.forwardRef(({ children }, ref) => {
-  return <div ref={ref}>{children}</div>;
-});
-
-MyComponent.displayName = "MyComponent";
-
-MyComponent.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+import MyComponent from "./MyComponent";
 
 const CardDetailDialog = ({ destination, isOpen, onClose }) => {
   const isDialogOpen = isOpen !== undefined ? isOpen : false;
+  const [Open, setOpen] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const handleClose = () => {
     setCurrentSlide(0);
     onClose();
+  };
+
+  const handleViewMore = () => {
+    setOpen(false); // Cerrar la ventana de diálogo
+    window.location.href = "/travelPrueba/";
   };
   return (
     <Transition.Root show={isDialogOpen} as={Fragment}>
@@ -100,12 +97,17 @@ const CardDetailDialog = ({ destination, isOpen, onClose }) => {
                     <p className="text-lg font-semibold mb-2">
                       ${destination.price}
                     </p>
-                    <Link
-                      to="/travelPrueba/"
-                      className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md"
-                    >
-                      Seguir Viendo
-                    </Link>
+                    <button>
+                      {Open && (
+                        <Link
+                          to="/travelPrueba/"
+                          onClick={handleViewMore}
+                          className="px-4 py-2 text-sm font-semibold bg-white text-indigo-600 rounded-md shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+                        >
+                          Ver más destinos
+                        </Link>
+                      )}
+                    </button>
                   </div>
                 </div>
               </div>
