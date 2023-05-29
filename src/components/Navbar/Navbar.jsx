@@ -53,7 +53,7 @@ export default function Navbar() {
                       <NavLink
                         key={item.name}
                         to={item.to}
-                        activeClassName="bg-gray-900 text-white"
+                        activeclassname="bg-gray-900 text-white"
                         className={classNames(
                           "text-gray-300 hover:bg-gray-700 hover:text-white",
                           {

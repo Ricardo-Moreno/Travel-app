@@ -7,21 +7,16 @@ import DestinationDetailsPage from "./components/DestinationDetailsPage/Destinat
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <div className="app-container">
-          <Navbar />
-          <Routes>
-            <Route path="/travelPrueba/" element={<DestinationPage />} />
-            <Route path="/travelPrueba/form" element={<AddDestinationForm />} />
-            <Route
-              path="/destination/:id"
-              element={<DestinationDetailsPage />}
-            />
-          </Routes>
-        </div>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <div className="app-container">
+        <Navbar />
+        <Routes>
+          <Route path="/travelPrueba/" element={<DestinationPage />} />
+          <Route path="/travelPrueba/form" element={<AddDestinationForm />} />
+          <Route path="/destination/:id" element={<DestinationDetailsPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
