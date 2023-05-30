@@ -2,16 +2,18 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import AddDestinationForm from "./components/AddDestinationForm/AddDestinationForm";
-import DestinationPage from "./components/DestinationsPage/DestinationPage";
-// import DestinationDetailsPage from "./components/DestinationDetailsPage/DestinationDetailsPage";
+
+import SearchContainer from "./components/SearchContainer/SearchContainer";
+import ContainerPage from "./components/ContainerPage/ContainerPage";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="app-container">
         <Navbar />
+        <SearchContainer />
         <Routes>
-          <Route path="/travelPrueba/" element={<DestinationPage />} />
+          <Route path="/travelPrueba/" element={<ContainerPage />} />
           <Route path="/travelPrueba/form" element={<AddDestinationForm />} />
           {/* <Route path="/destination/:id" element={<DestinationDetailsPage />} /> */}
         </Routes>
