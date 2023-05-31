@@ -8,7 +8,11 @@ import { Link, NavLink } from "react-router-dom";
 const navigation = [
   { name: "Mis viajes", to: "/travelPrueba/", current: true },
   { name: "Proveedores", to: "/travelPrueba/form", current: false },
-  { name: "Paquetes", to: "/travelPrueba/", current: false },
+  {
+    name: "Modificar Destinos Proveedores",
+    to: "/travelPrueba/formUpdate",
+    current: false,
+  },
   { name: "Alquileres", to: "/travelPrueba/", current: false },
 ];
 
