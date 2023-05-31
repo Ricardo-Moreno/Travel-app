@@ -6,11 +6,13 @@ import StarRating from "../StartRaiting/StartRating"; // Componente de las estre
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 import MyComponent from "./MyComponent";
+import GoogleMapsButton from "../GoogleMapsButton/GoogleMapsButton";
 
 const CardDetailDialog = ({ destination, isOpen, onClose }) => {
   const isDialogOpen = isOpen !== undefined ? isOpen : false;
   const [Open, setOpen] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [rating, setRating] = useState(destination.rating);
 
   const handleClose = () => {
     setCurrentSlide(0);
@@ -21,6 +23,11 @@ const CardDetailDialog = ({ destination, isOpen, onClose }) => {
     setOpen(false); // Cerrar la ventana de diálogo
     window.location.href = "/travelPrueba/";
   };
+
+  const handleRatingChange = (newRating) => {
+    setRating(newRating);
+  };
+
   return (
     <Transition.Root show={isDialogOpen} as={Fragment}>
       <Dialog
@@ -91,12 +98,16 @@ const CardDetailDialog = ({ destination, isOpen, onClose }) => {
                       {destination.description}
                     </p>
                     <div className="flex items-center mb-4">
-                      <StarRating rating={destination.rating} />
+                      <StarRating
+                        rating={rating}
+                        onChange={handleRatingChange}
+                      />
                       <span className="text-gray-600 ml-2"></span>
                     </div>
                     <p className="text-lg font-semibold mb-2">
                       ${destination.price}
                     </p>
+                    <GoogleMapsButton location={destination.location} />
                     <button>
                       {Open && (
                         <Link
@@ -126,6 +137,7 @@ CardDetailDialog.propTypes = {
     description: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
+    location: PropTypes.string.isRequired, // Agregando validación para la propiedad location
   }).isRequired,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,

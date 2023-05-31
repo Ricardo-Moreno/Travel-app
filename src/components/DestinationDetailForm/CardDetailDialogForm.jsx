@@ -6,6 +6,7 @@ import StarRating from "../StartRaiting/StartRating"; // Componente de las estre
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 import MyComponentForm from "./MyComponentForm";
+import GoogleMapsButton from "../GoogleMapsButton/GoogleMapsButton";
 
 const CardDetailDialogForm = ({ destinationForm, isOpen, onClose }) => {
   const isDialogOpen = isOpen !== undefined ? isOpen : false;
@@ -97,6 +98,7 @@ const CardDetailDialogForm = ({ destinationForm, isOpen, onClose }) => {
                     <p className="text-lg font-semibold mb-2">
                       ${destinationForm.price}
                     </p>
+                    <GoogleMapsButton location={destinationForm.location} />
                     <button>
                       {Open && (
                         <Link
@@ -126,6 +128,7 @@ CardDetailDialogForm.propTypes = {
     description: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
+    location: PropTypes.string.isRequired,
   }).isRequired,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
