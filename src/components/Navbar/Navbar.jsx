@@ -15,6 +15,7 @@ const navigation = [
   },
   { name: "Alquileres", to: "/travelPrueba/", current: false },
 ];
+const categories = ["playa", "montaña", "ciudad"];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -67,6 +68,23 @@ export default function Navbar() {
                         )}
                       >
                         {item.name}
+                      </NavLink>
+                    ))}
+                  </div>
+                </div>
+                <div className="hidden sm:ml-6 sm:block">
+                  <div className="flex space-x-4">
+                    {categories.map((category) => (
+                      <NavLink
+                        key={category}
+                        to={`/travelPrueba/category/${category}`}
+                        activeclassname="bg-gray-900 text-white"
+                        className={classNames(
+                          "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
+                        )}
+                      >
+                        {category}
                       </NavLink>
                     ))}
                   </div>

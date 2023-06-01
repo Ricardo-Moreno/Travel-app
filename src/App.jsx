@@ -5,6 +5,7 @@ import AddDestinationForm from "./components/AddDestinationForm/AddDestinationFo
 
 import ContainerPage from "./components/ContainerPage/ContainerPage";
 import UpdateObjectForm from "./components/UpdateObjectForm/UpdateObjectForm";
+import Categories from "./components/Categories/Categories";
 
 function App() {
   return (
@@ -17,6 +18,10 @@ function App() {
           <Route
             path="/travelPrueba/formUpdate"
             element={<UpdateObjectForm />}
+          />
+          <Route
+            path="/travelPrueba/category/:category"
+            element={<Categories />}
           />
           {/* <Route path="/destination/:id" element={<DestinationDetailsPage />} /> */}
         </Routes>

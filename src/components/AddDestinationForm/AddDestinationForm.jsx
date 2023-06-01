@@ -6,9 +6,10 @@ export default function AddDestinationForm() {
     availability: true,
     description: "",
     duration: "",
-    imageUrl: [], // Se agrega el campo imageUrl al estado inicial
+    imageUrl: [],
     location: "",
     name: "",
+    category: "",
     price: 0,
     rating: 0,
     title: "",
@@ -25,10 +26,8 @@ export default function AddDestinationForm() {
     const { name, value } = e.target;
 
     if (name === "imageUrl") {
-      // Si el campo de entrada es el de imagen, manejarla utilizando handleImageDrop
       handleImageDrop(value);
     } else {
-      // Si no es un campo de imagen, actualizar el estado normalmente
       setFormData((prevData) => ({
         ...prevData,
         [name]: value,
@@ -36,25 +35,15 @@ export default function AddDestinationForm() {
     }
   };
 
-  // const handleDragOver = (e) => {
-  //   e.preventDefault();
-  // };
-
-  // const handleDrop = (e, index) => {
-  //   e.preventDefault();
-  //   const imageFile = e.dataTransfer.files[0];
-  //   handleImageDrop(imageFile);
-  // };
-
   const enviar = () => {
-    // Validar los campos obligatorios antes de enviar los datos
     if (
       !formData.title ||
       !formData.description ||
       !formData.duration ||
-      !formData.imageUrl.length || // Se agrega la validación del campo imageUrl
+      !formData.imageUrl.length ||
       !formData.location ||
       !formData.name ||
+      !formData.category ||
       !formData.price ||
       !formData.availability ||
       !formData.rating
@@ -63,7 +52,6 @@ export default function AddDestinationForm() {
       return;
     }
 
-    // Crear un nuevo objeto de datos con el array de rutas de imagen
     const data = {
       ...formData,
       imageUrl: [...formData.imageUrl],
@@ -186,7 +174,29 @@ export default function AddDestinationForm() {
                   />
                 </div>
               </div>
-
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="category"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Categoría
+                </label>
+                <div className="mt-2">
+                  <select
+                    name="category"
+                    id="category"
+                    autoComplete="category"
+                    className="block w-full rounded-md border-gray-300 py-1.5 text-gray-900 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    value={formData.category || ""}
+                    onChange={handleChange}
+                  >
+                    <option value="">Selecciona una categoría</option>
+                    <option value="playa">Playa</option>
+                    <option value="montaña">Montaña</option>
+                    <option value="ciudad">Ciudad</option>
+                  </select>
+                </div>
+              </div>
               <div className="sm:col-span-2">
                 <label
                   htmlFor="price"
