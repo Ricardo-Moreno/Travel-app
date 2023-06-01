@@ -23,15 +23,18 @@ const SearchContainer = () => {
           onSearchResults={handleSearchResults}
         />
 
-        {searchResults.length > 0 ? (
+        {searchQuery !== "" && (
           <div>
-            <h2>Search Results:</h2>
-            {searchResults.map((result) => (
-              <p key={result.id}>{result.name}</p>
-            ))}
+            {searchResults.length > 0 ? (
+              <>
+                {searchResults.map((result) => (
+                  <p key={result.id}>{result.name}</p>
+                ))}
+              </>
+            ) : (
+              <></>
+            )}
           </div>
-        ) : (
-          searchQuery && <p>No results found.</p>
         )}
       </div>
     </>

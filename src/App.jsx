@@ -7,12 +7,14 @@ import ContainerPage from "./components/ContainerPage/ContainerPage";
 import UpdateObjectForm from "./components/UpdateObjectForm/UpdateObjectForm";
 import Categories from "./components/Categories/Categories";
 import SearchContainer from "./components/SearchContainer/SearchContainer";
+import Search from "./components/Search/Search";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="app-container">
         <Navbar />
+        <Search />
         <SearchContainer />
         <Routes>
           <Route path="/travelPrueba/" element={<ContainerPage />} />
