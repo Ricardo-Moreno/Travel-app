@@ -6,12 +6,14 @@ import AddDestinationForm from "./components/AddDestinationForm/AddDestinationFo
 import ContainerPage from "./components/ContainerPage/ContainerPage";
 import UpdateObjectForm from "./components/UpdateObjectForm/UpdateObjectForm";
 import Categories from "./components/Categories/Categories";
+import SearchContainer from "./components/SearchContainer/SearchContainer";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="app-container">
         <Navbar />
+        <SearchContainer />
         <Routes>
           <Route path="/travelPrueba/" element={<ContainerPage />} />
           <Route path="/travelPrueba/form" element={<AddDestinationForm />} />

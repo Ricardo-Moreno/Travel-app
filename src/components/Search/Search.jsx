@@ -10,32 +10,39 @@ const Search = ({ onSearch }) => {
   };
 
   return (
-    <form onSubmit={handleSearch} className="flex items-center space-x-2">
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Search"
-      />
-      <button
-        type="submit"
-        className="flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-600"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 text-white"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M9 2a7 7 0 100 14A7 7 0 009 2zm7.707 14.293a1 1 0 01-1.414 1.414l-4.142-4.142A5.5 5.5 0 1114.5 7h.038a5.5 5.5 0 01.012 10.995L15 18.5l-.001-.001a1 1 0 01-1.292 1.517z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </button>
-    </form>
+    <>
+      <div className="relative z-10">
+        <div className="my-6 mx-6 h-16 items-center justify-between">
+          <form onSubmit={handleSearch} className="items-center">
+            <div className="relative">
+              <input
+                className="w-full py-2 px-4 pr-10 leading-tight border  appearance-none focus:outline-none focus:border-custom-black"
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Buscar"
+              />
+              <div className="absolute top-0 right-0 mt-2 mr-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </>
   );
 };
 

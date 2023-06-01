@@ -15,24 +15,26 @@ const SearchContainer = () => {
   };
 
   return (
-    <div>
-      <Search onSearch={handleSearch} />
-      <SearchDestination
-        searchQuery={searchQuery}
-        onSearchResults={handleSearchResults}
-      />
+    <>
+      <div>
+        <Search onSearch={handleSearch} />
+        <SearchDestination
+          searchQuery={searchQuery}
+          onSearchResults={handleSearchResults}
+        />
 
-      {searchResults.length > 0 ? (
-        <div>
-          <h2>Search Results:</h2>
-          {searchResults.map((result) => (
-            <p key={result.id}>{result.name}</p>
-          ))}
-        </div>
-      ) : (
-        searchQuery && <p>No results found.</p>
-      )}
-    </div>
+        {searchResults.length > 0 ? (
+          <div>
+            <h2>Search Results:</h2>
+            {searchResults.map((result) => (
+              <p key={result.id}>{result.name}</p>
+            ))}
+          </div>
+        ) : (
+          searchQuery && <p>No results found.</p>
+        )}
+      </div>
+    </>
   );
 };
 
