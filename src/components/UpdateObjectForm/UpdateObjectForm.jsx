@@ -53,7 +53,7 @@ const UpdateObjectForm = () => {
             type="text"
             id="objectId"
             name="objectId"
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 px-2"
+            className="block w-full rounded-sm border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 px-2"
             value={formData.objectId || ""}
             onChange={handleChange}
             placeholder="ID del objeto a modificar"
@@ -72,7 +72,7 @@ const UpdateObjectForm = () => {
                   name="title"
                   id="title"
                   autoComplete="title"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 px-2"
+                  className="block w-full rounded-sm border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 px-2"
                   value={formData.title || ""}
                   onChange={handleChange}
                 />
@@ -92,7 +92,7 @@ const UpdateObjectForm = () => {
               id="about"
               name="description"
               rows={3}
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 px-2"
+              className="block w-full rounded-sm border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 px-2"
               value={formData.description || ""}
               onChange={handleChange}
             />
@@ -108,7 +108,7 @@ const UpdateObjectForm = () => {
                 Ciudad
               </label>
               <div className="mt-2">
-                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-white sm:max-w-md">
+                <div className="flex rounded-sm shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-white sm:max-w-md">
                   <input
                     type="text"
                     name="name"
@@ -139,7 +139,7 @@ const UpdateObjectForm = () => {
                   name="duration"
                   id="duration"
                   autoComplete="duration"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 px-2"
+                  className="block w-full rounded-sm border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 px-2"
                   value={formData.duration || ""}
                   onChange={handleChange}
                 />
@@ -159,7 +159,7 @@ const UpdateObjectForm = () => {
                   name="location"
                   id="location"
                   autoComplete="location"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 px-2"
+                  className="block w-full rounded-sm border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 px-2"
                   value={formData.location || ""}
                   onChange={handleChange}
                 />
@@ -180,7 +180,7 @@ const UpdateObjectForm = () => {
                   name="price"
                   id="price"
                   autoComplete="price"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 px-2"
+                  className="block w-full rounded-sm border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 px-2"
                   value={formData.price || ""}
                   onChange={handleChange}
                 />
@@ -202,7 +202,7 @@ const UpdateObjectForm = () => {
                   id="availability"
                   name="availability"
                   autoComplete="availability"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-white sm:max-w-xs sm:text-sm sm:leading-6"
+                  className="block w-full rounded-sm border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-white sm:max-w-xs sm:text-sm sm:leading-6"
                   value={formData.availability || ""}
                   onChange={handleChange}
                 >
@@ -224,7 +224,7 @@ const UpdateObjectForm = () => {
                   name="rating"
                   id="rating"
                   autoComplete="rating"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 px-2"
+                  className="block w-full rounded-sm border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 px-2"
                   value={formData.rating || ""}
                   onChange={handleChange}
                 />
@@ -237,7 +237,7 @@ const UpdateObjectForm = () => {
         type="text"
         id="imageUrl"
         name="imageUrl"
-        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 px-2"
+        className="block w-full rounded-sm border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6 px-2"
         value={formData.imageUrl}
         onChange={handleChange}
         placeholder=" Pegar la ruta de la imagen"

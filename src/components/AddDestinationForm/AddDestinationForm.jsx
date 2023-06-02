@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 export default function AddDestinationForm() {
@@ -14,7 +14,7 @@ export default function AddDestinationForm() {
     rating: 0,
     title: "",
   });
-
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const handleImageDrop = (imagePath) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -59,11 +59,44 @@ export default function AddDestinationForm() {
 
     const db = getFirestore();
     const queryDestination = collection(db, "destinations");
-    addDoc(queryDestination, data).then((res) => console.log(res));
+    addDoc(queryDestination, data)
+      .then(() => {
+        setShowSuccessMessage(true); // Mostrar el mensaje de éxito
+        setFormData({
+          // Restablecer los campos del formulario si es necesario
+          availability: true,
+          description: "",
+          duration: "",
+          imageUrl: [],
+          location: "",
+          name: "",
+          category: "",
+          price: 0,
+          rating: 0,
+          title: "",
+        });
+      })
+      .catch((error) => {
+        console.log("Error al guardar:", error);
+      });
   };
 
+  useEffect(() => {
+    if (showSuccessMessage) {
+      const timeout = setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 3000); // Ocultar el mensaje después de 3 segundos (3000 milisegundos)
+
+      return () => clearTimeout(timeout); // Limpiar el temporizador si el componente se desmonta antes
+    }
+  }, [showSuccessMessage]);
   return (
     <>
+      {showSuccessMessage && (
+        <div className="bg-green-200 text-green-800 p-4 mb-4">
+          Guardado exitosamente.
+        </div>
+      )}
       <form className="mx-6 max-w-2xl sm:mx-4">
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
@@ -273,7 +306,7 @@ export default function AddDestinationForm() {
         />
         <button
           type="button"
-          className="bg-custom-salmon hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm mt-4 my-12"
+          className="bg-custom-salmon hover:bg-custom-salmon text-white font-bold py-2 px-4 rounded-sm mt-4 my-12"
           onClick={enviar}
         >
           Guardar
