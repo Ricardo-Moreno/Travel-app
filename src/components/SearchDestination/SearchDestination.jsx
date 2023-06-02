@@ -7,11 +7,12 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import DestinationsList from "../DestinationsList/DestinationList";
+import SearchResults from "./SearchResult";
 
 const SearchDestination = ({ searchQuery }) => {
   const [destinations, setDestinations] = useState([]);
   const [otherDestinations, setOtherDestinations] = useState([]);
+  const [showSearchResults, setShowSearchResults] = useState(false);
 
   useEffect(() => {
     const fetchDestinations = async () => {
@@ -27,6 +28,7 @@ const SearchDestination = ({ searchQuery }) => {
         ...doc.data(),
       }));
       setDestinations(destinationsData);
+      setShowSearchResults(true);
     };
 
     const fetchOtherDestinations = async () => {
@@ -42,6 +44,7 @@ const SearchDestination = ({ searchQuery }) => {
         ...doc.data(),
       }));
       setOtherDestinations(destinationsData);
+      setShowSearchResults(true);
     };
 
     if (searchQuery !== "") {
@@ -54,36 +57,26 @@ const SearchDestination = ({ searchQuery }) => {
     return null; // No renderizar nada si searchQuery está vacío
   }
 
+  const handleCloseSearch = () => {
+    setShowSearchResults(false);
+  };
+
+  const handleContinueSearch = () => {
+    setDestinations([]);
+    setOtherDestinations([]);
+    setShowSearchResults(false);
+  };
+
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {destinations.length > 0 || otherDestinations.length > 0 ? (
-          <div className="mx-auto max-w-2xl py-8 sm:py-12 lg:max-w-none lg:py-16">
-            <div className="flex justify-center">
-              <h2 className="text-4xl font-bold text-cutom-black">
-                Destinos Encontrados
-              </h2>
-            </div>
-            <div className="mt-4 sm:mt-6">
-              <DestinationsList destinations={destinations} />
-            </div>
-            <div className="mt-4 sm:mt-6">
-              <DestinationsList destinations={otherDestinations} />
-            </div>
-          </div>
-        ) : (
-          <div className="mx-auto max-w-2xl py-8 sm:py-12 lg:max-w-none lg:py-16">
-            <div className="flex justify-center">
-              <div
-                className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-                role="alert"
-              >
-                <span className="block sm:inline">
-                  No hemos encontrado resultados con esa búsqueda.
-                </span>
-              </div>
-            </div>
-          </div>
+        {showSearchResults && (
+          <SearchResults
+            destinations={destinations}
+            otherDestinations={otherDestinations}
+            onCloseSearch={handleCloseSearch}
+            onContinueSearch={handleContinueSearch}
+          />
         )}
       </div>
     </div>

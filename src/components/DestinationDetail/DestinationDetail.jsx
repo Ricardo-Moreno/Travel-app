@@ -1,10 +1,6 @@
-
-import PropTypes from 'prop-types';
-
+import PropTypes from "prop-types";
 
 const DestinationDetail = ({ destination }) => {
-
-
   return (
     <div className="group relative">
       <img
@@ -15,8 +11,9 @@ const DestinationDetail = ({ destination }) => {
         <span className="absolute inset-0" />
         {destination.title}
       </h3>
-      <p className="text-base font-semibold text-gray-900">{destination.description}</p>
-
+      <p className="text-base font-semibold text-gray-900">
+        {destination.description}
+      </p>
     </div>
   );
 };
