@@ -8,11 +8,11 @@ const Info = ({ rating }) => {
   };
 
   return (
-    <div className="flex mx-2">
-      <div className="mx-2">
+    <div className="flex flex-col mx-2 md:flex-row">
+      <div className="flex justify-center mx-6 md:order-2">
         <StartRating rating={rating} onChange={handleRatingChange} />
       </div>
-      <div className="mx-2">
+      <div className="mx-auto w-full my-2 md:order-1">
         <Coments />
       </div>
     </div>
