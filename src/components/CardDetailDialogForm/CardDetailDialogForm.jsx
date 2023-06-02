@@ -1,18 +1,16 @@
-import { useState } from "react";
-import { Fragment } from "react";
+import { useState, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import PropTypes from "prop-types";
-import StarRating from "../StartRaiting/StartRating"; // Componente de las estrellas de puntuación
+
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
-
 import GoogleMapsButton from "../GoogleMapsButton/GoogleMapsButton";
+import Info from "../StartRaiting/Info";
 
-const CardDetailDialog = ({ destination, isOpen, onClose }) => {
-  const isDialogOpen = isOpen !== undefined ? isOpen : false;
-  const [Open, setOpen] = useState(true);
+const CardDetailDialogForm = ({ destinationForm, isOpen, onClose }) => {
+  const { imageUrl, title, description, price, rating, duration, location } =
+    destinationForm;
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [rating, setRating] = useState(destination.rating);
 
   const handleClose = () => {
     setCurrentSlide(0);
@@ -20,16 +18,11 @@ const CardDetailDialog = ({ destination, isOpen, onClose }) => {
   };
 
   const handleViewMore = () => {
-    setOpen(false); // Cerrar la ventana de diálogo
     window.location.href = "/travelPrueba/";
   };
 
-  const handleRatingChange = (newRating) => {
-    setRating(newRating);
-  };
-
   return (
-    <Transition.Root show={isDialogOpen} as={Fragment}>
+    <Transition.Root show={isOpen} as={Fragment}>
       <Dialog
         as="div"
         className="fixed z-10 inset-0 overflow-y-auto"
@@ -37,26 +30,25 @@ const CardDetailDialog = ({ destination, isOpen, onClose }) => {
       >
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-
           <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
             <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
               <div className="sm:flex sm:items-start">
                 <div className="sm:mr-6">
-                  {/* Aquí va el carrusel de imágenes */}
                   <div className="w-full">
                     <div className="relative">
                       <Carousel
                         showThumbs={false}
-                        dynamicHeight={true}
+                        dynamicHeight={false}
                         selectedItem={currentSlide}
                         onChange={setCurrentSlide}
+                        showStatus={false}
                       >
-                        {destination.imageUrl.map((image, index) => (
+                        {imageUrl.map((image, index) => (
                           <div key={index}>
                             <img
                               src={image}
-                              alt={destination.title}
-                              className="h-56 w-40 object-cover object-center"
+                              alt={title}
+                              className="h-56 w-full object-cover object-center"
                             />
                           </div>
                         ))}
@@ -64,33 +56,30 @@ const CardDetailDialog = ({ destination, isOpen, onClose }) => {
                     </div>
                   </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">
-                    {destination.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    {destination.description}
-                  </p>
-                  <div className="flex items-center mb-4">
-                    <StarRating rating={rating} onChange={handleRatingChange} />
-                    <span className="text-gray-600 ml-2"></span>
-                  </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-medium mb-2">{title}</h3>
+                <p className="text-gray-600 mb-4">{description}</p>
+                <div className="flez mx-2">
+                  <p className="text-lg font-semibold mb-2">Precio: ${price}</p>
                   <p className="text-lg font-semibold mb-2">
-                    ${destination.price}
+                    Duracion: {duration}
                   </p>
-                  <GoogleMapsButton location={destination.location} />
-                  <button>
-                    {Open && (
-                      <Link
-                        to="/travelPrueba/"
-                        onClick={handleViewMore}
-                        className="px-4 py-2 text-sm font-semibold bg-white text-indigo-600 rounded-md shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-                      >
-                        Ver más destinos
-                      </Link>
-                    )}
-                  </button>
                 </div>
+                <div className="flex items-center mb-4">
+                  <Info rating={rating} />
+                </div>
+                <GoogleMapsButton location={location} />
+
+                <button className="my-4" disabled={!isOpen}>
+                  <Link
+                    to="/travelPrueba/"
+                    onClick={handleViewMore}
+                    className="my-4 px-4 py-2 text-sm font-semibold bg-white text-custom-salmon rounded-sm shadow-md hover:bg-custom-salmon hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom-salmon"
+                  >
+                    Ver más destinos
+                  </Link>
+                </button>
               </div>
             </div>
           </div>
@@ -100,17 +89,18 @@ const CardDetailDialog = ({ destination, isOpen, onClose }) => {
   );
 };
 
-CardDetailDialog.propTypes = {
-  destination: PropTypes.shape({
+CardDetailDialogForm.propTypes = {
+  destinationForm: PropTypes.shape({
     imageUrl: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    duration: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
-    location: PropTypes.string.isRequired, // Agregando validación para la propiedad location
+    location: PropTypes.string.isRequired,
   }).isRequired,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
-export default CardDetailDialog;
+export default CardDetailDialogForm;

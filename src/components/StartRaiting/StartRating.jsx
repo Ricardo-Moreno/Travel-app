@@ -1,21 +1,11 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const StarRating = ({ rating, onChange }) => {
+const StartRating = ({ rating, onChange }) => {
   const [hoverRating, setHoverRating] = useState(0);
-  const [comment, setComment] = useState("");
-  const [savedComment, setSavedComment] = useState("");
 
   const handleRatingChange = (newRating) => {
-    onChange(newRating, savedComment);
-  };
-
-  const handleCommentChange = (event) => {
-    setComment(event.target.value);
-  };
-
-  const handleSaveComment = () => {
-    setSavedComment(comment);
+    onChange(newRating);
   };
 
   const renderStars = () => {
@@ -48,34 +38,16 @@ const StarRating = ({ rating, onChange }) => {
   };
 
   return (
-    <div className="flex flex-col space-y-4">
-      <div className="flex items-center space-x-2">
-        <div className="flex">{renderStars()}</div>
-        <span className="text-gray-500">{rating}/5</span>
-      </div>
-      <div className="flex items-center space-x-2">
-        <input
-          type="text"
-          value={comment}
-          onChange={handleCommentChange}
-          placeholder="Escribe tu comentario..."
-          className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-        />
-        <button
-          className="px-3 py-2 bg-indigo-500 text-white rounded-md"
-          onClick={handleSaveComment}
-        >
-          Guardar
-        </button>
-      </div>
-      {savedComment && <p className="text-gray-600">{savedComment}</p>}
+    <div className="flex items-center space-x-2">
+      <div className="flex">{renderStars()}</div>
+      <span className="text-gray-500">{rating}/5</span>
     </div>
   );
 };
 
-StarRating.propTypes = {
+StartRating.propTypes = {
   rating: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
-export default StarRating;
+export default StartRating;

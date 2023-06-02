@@ -2,10 +2,11 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import CardDetailDialog from "../DestinationDetail/CardDetailDialog";
+import CardDetailDialog from "../CardDetailDialog/CardDetailDialog";
+import StartRating from "../StartRaiting/StartRating";
 
 const DestinationCard = ({ destination }) => {
-  const [showDialog, setShowDialog] = useState(false);
+  const [showDialog, setShowDialog] = useState();
 
   const handleClick = () => {
     setShowDialog(true);
@@ -15,9 +16,13 @@ const DestinationCard = ({ destination }) => {
     setShowDialog(false);
   };
 
+  const handleRatingChange = (newRating) => {
+    console.log("Nuevo rating:", newRating);
+  };
+
   return (
-    <div className="group relative mx-1 my-2">
-      <Carousel showThumbs={false} dynamicHeight>
+    <div className="group relative mx-2 my-2">
+      <Carousel showThumbs={false} dynamicHeight={true} showStatus={false}>
         {destination.imageUrl.map((image, index) => (
           <div key={index}>
             <img
@@ -33,6 +38,13 @@ const DestinationCard = ({ destination }) => {
           {destination.title}
         </h3>
         <p className="mt-1 text-sm text-gray-900">{destination.description}</p>
+        <p className="mt-1 text-sm font-bold text-custom-black">
+          Por {destination.duration}{" "}
+          <StartRating
+            rating={destination.rating}
+            onChange={handleRatingChange}
+          />
+        </p>
         <button
           onClick={handleClick}
           className="mt-2 px-2 py-2 text-sm text-custom-salmon hover:text-white  hover:bg-custom-salmon rounded-sm focus:outline-none"
@@ -58,6 +70,8 @@ DestinationCard.propTypes = {
     name: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    duration: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
   }).isRequired,
 };
 

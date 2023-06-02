@@ -8,23 +8,23 @@ const SearchResults = ({
   onContinueSearch,
 }) => {
   if (destinations.length > 0 || otherDestinations.length > 0) {
+    const destination = [...destinations, ...otherDestinations];
+
     return (
       <div className="mx-auto max-w-2xl py-8 sm:py-12 lg:max-w-none lg:py-16">
         <div className="flex justify-center">
-          <h2 className="text-4xl font-bold text-cutom-black">
+          <h2 className="text-3xl font-bold text-custom-salmon">
             Destinos Encontrados
           </h2>
         </div>
-        <div className="mt-4 sm:mt-6">
-          <DestinationsList destinations={destinations} />
+        <div className="flex mt-4 sm:mt-6">
+          <DestinationsList destinations={destination} />
         </div>
-        <div className="mt-4 sm:mt-6">
-          <DestinationsList destinations={otherDestinations} />
-        </div>
+
         <div className="flex justify-center mt-8">
           <button
             onClick={onCloseSearch}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-white hover:bg-custom-salmon hover:text-white text-custom-salmon font-bold py-2 px-4 rounded-sm border-2 border-custom-salmon"
           >
             Ver más destinos
           </button>
@@ -47,7 +47,7 @@ const SearchResults = ({
         <div className="flex justify-center mt-8">
           <button
             onClick={onContinueSearch}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-white hover:bg-custom-salmon hover:text-white text-custom-salmon font-bold py-2 px-4 rounded-sm border-2 border-custom-salmon"
           >
             Seguir buscando
           </button>

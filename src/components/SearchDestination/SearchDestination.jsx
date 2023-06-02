@@ -13,6 +13,7 @@ const SearchDestination = ({ searchQuery }) => {
   const [destinations, setDestinations] = useState([]);
   const [otherDestinations, setOtherDestinations] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchDestinations = async () => {
@@ -28,6 +29,7 @@ const SearchDestination = ({ searchQuery }) => {
         ...doc.data(),
       }));
       setDestinations(destinationsData);
+      setIsLoading(false);
       setShowSearchResults(true);
     };
 
@@ -44,17 +46,19 @@ const SearchDestination = ({ searchQuery }) => {
         ...doc.data(),
       }));
       setOtherDestinations(destinationsData);
+      setIsLoading(false);
       setShowSearchResults(true);
     };
 
     if (searchQuery !== "") {
+      setIsLoading(true);
       fetchDestinations();
       fetchOtherDestinations();
     }
   }, [searchQuery]);
 
   if (searchQuery === "") {
-    return null; // No renderizar nada si searchQuery está vacío
+    return null;
   }
 
   const handleCloseSearch = () => {
@@ -68,17 +72,36 @@ const SearchDestination = ({ searchQuery }) => {
   };
 
   return (
-    <div className="bg-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {showSearchResults && (
-          <SearchResults
-            destinations={destinations}
-            otherDestinations={otherDestinations}
-            onCloseSearch={handleCloseSearch}
-            onContinueSearch={handleContinueSearch}
-          />
-        )}
-      </div>
+    <div>
+      {isLoading ? (
+        <div className="fixed  left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-custom-salmon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="animate-spin w-16 h-18 mx-auto"
+          >
+            <circle cx="12" cy="12" r="10" />
+          </svg>
+        </div>
+      ) : (
+        <div className="bg-white">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {showSearchResults && (
+              <SearchResults
+                destinations={destinations}
+                otherDestinations={otherDestinations}
+                onCloseSearch={handleCloseSearch}
+                onContinueSearch={handleContinueSearch}
+              />
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
