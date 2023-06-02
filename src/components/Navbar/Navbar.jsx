@@ -12,7 +12,7 @@ import { UserCircleIcon } from "@heroicons/react/24/outline";
 import logo from "../../assets/logo.png";
 import { Link, NavLink } from "react-router-dom";
 
-const categories = ["Playa", "Montaña", "Ciudad"];
+const categories = ["Playa", "Montañas", "Ciudad"];
 
 const navigation = [{ name: "Destinos", to: "/travelPrueba/", current: false }];
 
@@ -80,7 +80,7 @@ export default function Navbar() {
                           {
                             "bg-gray-900 text-white": item.current,
                           },
-                          "rounded-md px-3 py-2 text-sm font-medium"
+                          "rounded-sm px-3 py-2 text-sm font-medium"
                         )}
                       >
                         <div className="flex items-center">
@@ -103,7 +103,7 @@ export default function Navbar() {
                             activeClassName="bg-gray-900 text-white"
                             className={classNames(
                               "text-customer-black hover:bg-custom-salmon hover:text-white",
-                              "rounded-md px-3 py-2 text-sm font-medium"
+                              "rounded-sm px-3 py-2 text-sm font-medium"
                             )}
                           >
                             <div className="flex items-center">
@@ -123,7 +123,7 @@ export default function Navbar() {
                             >
                               <Disclosure.Panel
                                 static
-                                className="absolute mt-2 bg-custom-salmon text-white rounded-md top-10 right-0 w-auto  py-2 shadow-lg ring-black ring-opacity-5 focus:outline-none z-50"
+                                className="absolute mt-2 bg-custom-salmon text-white rounded-sm top-10 right-0 w-auto  py-2 shadow-lg ring-black ring-opacity-5 focus:outline-none z-50"
                               >
                                 {category.map((item) => (
                                   <NavLink
@@ -160,7 +160,7 @@ export default function Navbar() {
                             to="#"
                             className={classNames(
                               "text-customer-black hover:bg-custom-salmon hover:text-white",
-                              "rounded-md px-3 py-2 text-sm font-medium"
+                              "rounded-sm px-3 py-2 text-sm font-medium"
                             )}
                           >
                             <div className="flex items-center">
@@ -180,7 +180,7 @@ export default function Navbar() {
                             >
                               <Disclosure.Panel
                                 static
-                                className="absolute mt-2 bg-custom-salmon text-white rounded-md top-10 right-0 w-auto  py-2 shadow-lg ring-black ring-opacity-5 focus:outline-none"
+                                className="absolute mt-2 bg-custom-salmon text-white rounded-sm top-10 right-0 w-auto  py-2 shadow-lg ring-black ring-opacity-5 focus:outline-none"
                               >
                                 {submenuItems.map((item) => (
                                   <NavLink

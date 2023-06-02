@@ -18,8 +18,6 @@ const GoogleMapsButton = ({ location }) => {
         setCenter({ lat: lat(), lng: lng() });
       } else {
         console.error("Error geocoding location:", status);
-        // Puedes mostrar un mensaje de error o establecer un centro predeterminado en caso de error
-        // setCenter({ lat: DEFAULT_LATITUDE, lng: DEFAULT_LONGITUDE });
       }
     });
   }, [location]);

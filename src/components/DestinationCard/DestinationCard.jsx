@@ -16,7 +16,7 @@ const DestinationCard = ({ destination }) => {
   };
 
   return (
-    <div className="group relative mx-1">
+    <div className="group relative mx-2 my-2">
       <Carousel showThumbs={false} dynamicHeight>
         {destination.imageUrl.map((image, index) => (
           <div key={index}>
@@ -32,10 +32,10 @@ const DestinationCard = ({ destination }) => {
         <h3 className="mt-2 text-sm font-bold text-custom-black">
           {destination.title}
         </h3>
-        <p className="mt-1 text-sm text-gray-500">{destination.description}</p>
+        <p className="mt-1 text-sm text-gray-900">{destination.description}</p>
         <button
           onClick={handleClick}
-          className="mt-1 px-2 py-2 text-sm text-custom-salmon  hover:bg-custom-salmon rounded-sm focus:outline-none"
+          className="mt-2 px-2 py-2 text-sm text-custom-salmon hover:text-white  hover:bg-custom-salmon rounded-sm focus:outline-none"
         >
           Ver más
         </button>

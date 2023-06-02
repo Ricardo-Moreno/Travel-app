@@ -23,22 +23,23 @@ const StarRating = ({ rating, onChange }) => {
 
     for (let i = 1; i <= 5; i++) {
       const starClass =
-        i <= (hoverRating || rating) ? "text-yellow-500" : "text-gray-300";
+        i <= (hoverRating || rating) ? "text-custom-salmon" : "text-gray-300";
 
       stars.push(
         <svg
           key={i}
-          className={`h-5 w-5 inline ${starClass}`}
-          fill="currentColor"
-          viewBox="0 0 20 20"
+          className={`h-6 w-6 inline ${starClass}`}
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
           onMouseEnter={() => setHoverRating(i)}
           onMouseLeave={() => setHoverRating(0)}
           onClick={() => handleRatingChange(i)}
         >
-          <path
-            fillRule="evenodd"
-            d="M10 0l3.09 6.31 6.9.99L13.64 10l2.35 5.7-6.9-.99L10 20l-2.1-4.29-6.9.99L6.36 10 .46 4.29l6.9.99L10 0z"
-          />
+          <path d="M12 2 L16 9 22 9 17 14 20 22 12 17 4 22 7 14 2 9 8 9 Z" />
         </svg>
       );
     }

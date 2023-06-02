@@ -1,16 +1,15 @@
-import { useState } from "react";
-import { Fragment } from "react";
+import { useState, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import PropTypes from "prop-types";
-import StarRating from "../StartRaiting/StartRating"; // Componente de las estrellas de puntuación
+import StarRating from "../StartRaiting/StartRating";
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
-import MyComponentForm from "./MyComponentForm";
 import GoogleMapsButton from "../GoogleMapsButton/GoogleMapsButton";
 
 const CardDetailDialogForm = ({ destinationForm, isOpen, onClose }) => {
-  const isDialogOpen = isOpen !== undefined ? isOpen : false;
-  const [Open, setOpen] = useState(true);
+  const { imageUrl, title, description, price, duration, rating, location } =
+    destinationForm;
+
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const handleClose = () => {
@@ -19,102 +18,77 @@ const CardDetailDialogForm = ({ destinationForm, isOpen, onClose }) => {
   };
 
   const handleViewMore = () => {
-    setOpen(false); // Cerrar la ventana de diálogo
     window.location.href = "/travelPrueba/";
   };
+
   return (
-    <Transition.Root show={isDialogOpen} as={Fragment}>
+    <Transition.Root show={isOpen} as={Fragment}>
       <Dialog
         as="div"
         className="fixed z-10 inset-0 overflow-y-auto"
         onClose={handleClose}
       >
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-          <Transition.Child
-            as={MyComponentForm} // Utilizamos MyComponent como valor de `as`
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-          </Transition.Child>
-
-          <span
-            className="hidden sm:inline-block sm:align-middle sm:h-screen"
-            aria-hidden="true"
-          >
-            &#8203;
-          </span>
-
-          <Transition.Child
-            as={MyComponentForm} // Utilizamos MyComponent como valor de `as`
-            enter="ease-out duration-300"
-            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            enterTo="opacity-100 translate-y-0 sm:scale-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          >
-            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
-              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div className="sm:flex sm:items-start">
-                  <div className="sm:mr-6">
-                    {/* Aquí va el carrusel de imágenes */}
-                    <div className="w-full">
-                      <div className="relative">
-                        <Carousel
-                          showThumbs={false}
-                          dynamicHeight={true}
-                          selectedItem={currentSlide}
-                          onChange={setCurrentSlide}
-                        >
-                          {destinationForm.imageUrl.map((image, index) => (
-                            <div key={index}>
-                              <img
-                                src={image}
-                                alt={destinationForm.title}
-                                className="h-56 w-40 object-cover object-center"
-                              />
-                            </div>
-                          ))}
-                        </Carousel>
-                      </div>
+          <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+            <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+              <div className="sm:flex sm:items-start">
+                <div className="sm:mr-6">
+                  <div className="w-full">
+                    <div className="relative">
+                      <Carousel
+                        showThumbs={false}
+                        dynamicHeight={true}
+                        selectedItem={currentSlide}
+                        onChange={setCurrentSlide}
+                      >
+                        {imageUrl.map((image, index) => (
+                          <div key={index}>
+                            <img
+                              src={image}
+                              alt={title}
+                              className="h-60 w-40 object-cover object-center"
+                            />
+                          </div>
+                        ))}
+                      </Carousel>
                     </div>
                   </div>
+
                   <div>
-                    <h3 className="text-xl font-medium mb-2">
-                      {destinationForm.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4">
-                      {destinationForm.description}
-                    </p>
-                    <div className="flex items-center mb-4">
-                      <StarRating rating={destinationForm.rating} />
-                      <span className="text-gray-600 ml-2"></span>
+                    <h3 className="text-xl font-medium mb-2">{title}</h3>
+                    <p className="text-gray-600 mb-4">{description}</p>
+                    <div className="flex ">
+                      <p className="text-lg font-semibold mb-2 mx-1">
+                        Precio: ${price}
+                      </p>
+                      <p className="text-lg font-semibold mb-2 mx-1">
+                        Duracion: {duration}
+                      </p>
                     </div>
-                    <p className="text-lg font-semibold mb-2">
-                      ${destinationForm.price}
-                    </p>
-                    <GoogleMapsButton location={destinationForm.location} />
-                    <button>
-                      {Open && (
+                    <div className="flex items-center mb-4">
+                      <div>
+                        <StarRating rating={rating} />
+                      </div>
+                    </div>
+
+                    <div>
+                      <GoogleMapsButton location={location} />
+                      <button className="my-4" disabled={!isOpen}>
                         <Link
                           to="/travelPrueba/"
                           onClick={handleViewMore}
-                          className="px-4 py-2 text-sm font-semibold bg-white text-indigo-600 rounded-md shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+                          className="my-4 px-4 py-2 text-sm font-semibold bg-white text-custom-salmon rounded-sm shadow-md hover:bg-custom-salmon hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom-salmon"
                         >
                           Ver más destinos
                         </Link>
-                      )}
-                    </button>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </Transition.Child>
+          </div>
         </div>
       </Dialog>
     </Transition.Root>
@@ -126,6 +100,7 @@ CardDetailDialogForm.propTypes = {
     imageUrl: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    duration: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     location: PropTypes.string.isRequired,

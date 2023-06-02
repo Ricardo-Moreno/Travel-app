@@ -12,7 +12,7 @@ const Search = ({ onSearch }) => {
   return (
     <>
       <div className="relative z-10">
-        <div className="my-6 mx-6 h-16 items-center justify-between">
+        <div className="my-6 mx-12 h-16 items-center justify-between">
           <form onSubmit={handleSearch} className="items-center">
             <div className="relative">
               <input

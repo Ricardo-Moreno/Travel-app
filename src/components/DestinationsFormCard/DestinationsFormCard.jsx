@@ -16,14 +16,14 @@ const DestinationFormCard = ({ destinationForm }) => {
   };
 
   return (
-    <div className="group relative w-60">
+    <div className="group relative mx-2 my-2">
       <Carousel showThumbs={false} dynamicHeight={true}>
         {destinationForm.imageUrl.map((image, index) => (
           <div key={index}>
             <img
               src={image}
               alt={destinationForm.name}
-              className="h-60 w-40 object-cover object-center rounded-md"
+              className="h-56 w-full object-cover object-center rounded-md"
             />
           </div>
         ))}
@@ -32,12 +32,12 @@ const DestinationFormCard = ({ destinationForm }) => {
         <h3 className="mt-2 text-sm font-bold text-custom-black">
           {destinationForm.title}
         </h3>
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-sm text-gray-900">
           {destinationForm.description}
         </p>
         <button
           onClick={handleClick}
-          className="mt-1 px-2 py-2 text-sm text-custom-salmon  hover:bg-custom-salmon rounded-sm focus:outline-none"
+          className="mt-2 px-2 py-2 text-sm text-custom-salmon hover:text-white  hover:bg-custom-salmon rounded-sm focus:outline-none"
         >
           Ver más
         </button>
