@@ -16,7 +16,7 @@ const DestinationCard = ({ destination }) => {
   };
 
   return (
-    <div className="group relative mx-2 my-2">
+    <div className="group relative mx-1 my-2">
       <Carousel showThumbs={false} dynamicHeight>
         {destination.imageUrl.map((image, index) => (
           <div key={index}>

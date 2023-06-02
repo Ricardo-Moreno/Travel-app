@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import StarRating from "../StartRaiting/StartRating"; // Componente de las estrellas de puntuación
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
-import MyComponent from "./MyComponent";
+
 import GoogleMapsButton from "../GoogleMapsButton/GoogleMapsButton";
 
 const CardDetailDialog = ({ destination, isOpen, onClose }) => {
@@ -36,94 +36,64 @@ const CardDetailDialog = ({ destination, isOpen, onClose }) => {
         onClose={handleClose}
       >
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-          <Transition.Child
-            as={MyComponent} // Utilizamos MyComponent como valor de `as`
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-          </Transition.Child>
+          <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
 
-          <span
-            className="hidden sm:inline-block sm:align-middle sm:h-screen"
-            aria-hidden="true"
-          >
-            &#8203;
-          </span>
-
-          <Transition.Child
-            as={MyComponent} // Utilizamos MyComponent como valor de `as`
-            enter="ease-out duration-300"
-            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            enterTo="opacity-100 translate-y-0 sm:scale-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          >
-            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
-              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div className="sm:flex sm:items-start">
-                  <div className="sm:mr-6">
-                    {/* Aquí va el carrusel de imágenes */}
-                    <div className="w-full">
-                      <div className="relative">
-                        <Carousel
-                          showThumbs={false}
-                          dynamicHeight={true}
-                          selectedItem={currentSlide}
-                          onChange={setCurrentSlide}
-                        >
-                          {destination.imageUrl.map((image, index) => (
-                            <div key={index}>
-                              <img
-                                src={image}
-                                alt={destination.title}
-                                className="h-56 w-40 object-cover object-center"
-                              />
-                            </div>
-                          ))}
-                        </Carousel>
-                      </div>
+          <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+            <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+              <div className="sm:flex sm:items-start">
+                <div className="sm:mr-6">
+                  {/* Aquí va el carrusel de imágenes */}
+                  <div className="w-full">
+                    <div className="relative">
+                      <Carousel
+                        showThumbs={false}
+                        dynamicHeight={true}
+                        selectedItem={currentSlide}
+                        onChange={setCurrentSlide}
+                      >
+                        {destination.imageUrl.map((image, index) => (
+                          <div key={index}>
+                            <img
+                              src={image}
+                              alt={destination.title}
+                              className="h-56 w-40 object-cover object-center"
+                            />
+                          </div>
+                        ))}
+                      </Carousel>
                     </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-medium mb-2">
-                      {destination.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4">
-                      {destination.description}
-                    </p>
-                    <div className="flex items-center mb-4">
-                      <StarRating
-                        rating={rating}
-                        onChange={handleRatingChange}
-                      />
-                      <span className="text-gray-600 ml-2"></span>
-                    </div>
-                    <p className="text-lg font-semibold mb-2">
-                      ${destination.price}
-                    </p>
-                    <GoogleMapsButton location={destination.location} />
-                    <button>
-                      {Open && (
-                        <Link
-                          to="/travelPrueba/"
-                          onClick={handleViewMore}
-                          className="px-4 py-2 text-sm font-semibold bg-white text-indigo-600 rounded-md shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-                        >
-                          Ver más destinos
-                        </Link>
-                      )}
-                    </button>
+                </div>
+                <div>
+                  <h3 className="text-xl font-medium mb-2">
+                    {destination.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    {destination.description}
+                  </p>
+                  <div className="flex items-center mb-4">
+                    <StarRating rating={rating} onChange={handleRatingChange} />
+                    <span className="text-gray-600 ml-2"></span>
                   </div>
+                  <p className="text-lg font-semibold mb-2">
+                    ${destination.price}
+                  </p>
+                  <GoogleMapsButton location={destination.location} />
+                  <button>
+                    {Open && (
+                      <Link
+                        to="/travelPrueba/"
+                        onClick={handleViewMore}
+                        className="px-4 py-2 text-sm font-semibold bg-white text-indigo-600 rounded-md shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+                      >
+                        Ver más destinos
+                      </Link>
+                    )}
+                  </button>
                 </div>
               </div>
             </div>
-          </Transition.Child>
+          </div>
         </div>
       </Dialog>
     </Transition.Root>

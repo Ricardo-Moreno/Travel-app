@@ -213,13 +213,11 @@ export default function Navbar() {
                   type="button"
                   className="rounded-full bg-with p-1 text-custom-black hover:text-custom-salmon focus:outline-none focus:ring-2 focus:ring-custom-salmon focus:ring-offset-2 focus:ring-offset-custom-salmon"
                 >
-                  <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="flex rounded-full bg-with text-sm focus:outline-none focus:ring-2 focus:ring-custom-salmon focus:ring-offset-2 focus:ring-offset-custom-salmon">
-                      <span className="sr-only">Open user menu</span>
+                    <Menu.Button className="rounded-full bg-with p-1 text-custom-black hover:text-custom-salmon focus:outline-none focus:ring-2 focus:ring-custom-salmon focus:ring-offset-2 focus:ring-offset-custom-salmon">
                       <UserCircleIcon
                         className="h-6 w-6 text-custom-black hover:text-custom-salmon"
                         aria-hidden="true"
@@ -235,7 +233,7 @@ export default function Navbar() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute right-0 z-50 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
                           <a

@@ -1,4 +1,3 @@
-// DestinationPage.js
 import { useEffect, useState } from "react";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import DestinationsList from "../DestinationsList/DestinationList";
@@ -9,12 +8,30 @@ const DestinationPage = () => {
   useEffect(() => {
     const fetchDestinations = async () => {
       const db = getFirestore();
-      const querySnapshot = await getDocs(collection(db, "items"));
-      const destinationsData = querySnapshot.docs.map((doc) => ({
+      const destinationsQuerySnapshot = await getDocs(collection(db, "items"));
+      const destinationsFormDataQuerySnapshot = await getDocs(
+        collection(db, "destinations")
+      );
+
+      const destinationsData = destinationsQuerySnapshot.docs.map((doc) => ({
         id: doc.id,
+        type: "destination",
         ...doc.data(),
       }));
-      setDestinations(destinationsData);
+
+      const destinationsFormData = destinationsFormDataQuerySnapshot.docs.map(
+        (doc) => ({
+          id: doc.id,
+          type: "destinationForm",
+          ...doc.data(),
+        })
+      );
+
+      const combinedDestinations = [
+        ...destinationsData,
+        ...destinationsFormData,
+      ];
+      setDestinations(combinedDestinations);
     };
 
     fetchDestinations();
