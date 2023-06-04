@@ -28,7 +28,7 @@ const SearchContainer = () => {
             {searchResults.length > 0 ? (
               <>
                 {searchResults.map((result) => (
-                  <p key={result.id}>{result.name}</p>
+                  <div key={result.id}>{result.name}</div>
                 ))}
               </>
             ) : (

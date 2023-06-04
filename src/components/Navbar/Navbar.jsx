@@ -38,6 +38,8 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <Disclosure as="nav" className="bg-white">
       {({ open }) => (
@@ -74,7 +76,6 @@ export default function Navbar() {
                       <NavLink
                         key={item.name}
                         to={item.to}
-                        activeclassname="bg-gray-900 text-white"
                         className={classNames(
                           "text-customer-black hover:bg-custom-salmon hover:text-white",
                           {
@@ -94,13 +95,12 @@ export default function Navbar() {
 
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    <Disclosure>
+                    <Menu>
                       {({ open }) => (
                         <>
-                          <Disclosure.Button
+                          <Menu.Button
                             as={NavLink}
                             to="#"
-                            activeClassName="bg-gray-900 text-white"
                             className={classNames(
                               "text-customer-black hover:bg-custom-salmon hover:text-white",
                               "rounded-sm px-3 py-2 text-sm font-medium"
@@ -110,7 +110,7 @@ export default function Navbar() {
                               <FolderOpenIcon className="h-6 w-6" />
                               Categorias
                             </div>
-                          </Disclosure.Button>
+                          </Menu.Button>
                           <div className="relative z-50">
                             <Transition
                               show={open}
@@ -121,7 +121,7 @@ export default function Navbar() {
                               leaveFrom="transform opacity-100 scale-100"
                               leaveTo="transform opacity-0 scale-95"
                             >
-                              <Disclosure.Panel
+                              <Menu.Items
                                 static
                                 className="absolute mt-2 bg-custom-salmon text-white rounded-sm top-10 right-0 w-auto  py-2 shadow-lg ring-black ring-opacity-5 focus:outline-none z-50"
                               >
@@ -129,7 +129,6 @@ export default function Navbar() {
                                   <NavLink
                                     key={item.name}
                                     to={item.to}
-                                    activeClassName="bg-gray-900 text-white"
                                     className={classNames(
                                       "text-custom-blue hover:bg-custom-blue hover:text-custom-blue3",
                                       {
@@ -141,21 +140,21 @@ export default function Navbar() {
                                     {item.name}
                                   </NavLink>
                                 ))}
-                              </Disclosure.Panel>
+                              </Menu.Items>
                             </Transition>
                           </div>
                         </>
                       )}
-                    </Disclosure>
+                    </Menu>
                   </div>
                 </div>
 
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    <Disclosure>
+                    <Menu>
                       {({ open }) => (
                         <>
-                          <Disclosure.Button
+                          <Menu.Button
                             as={NavLink}
                             to="#"
                             className={classNames(
@@ -167,7 +166,7 @@ export default function Navbar() {
                               <UserGroupIcon className="h-6 w-6" />
                               Proveedores
                             </div>
-                          </Disclosure.Button>
+                          </Menu.Button>
                           <div className="relative z-50">
                             <Transition
                               show={open}
@@ -178,7 +177,7 @@ export default function Navbar() {
                               leaveFrom="transform opacity-100 scale-100"
                               leaveTo="transform opacity-0 scale-95"
                             >
-                              <Disclosure.Panel
+                              <Menu.Items
                                 static
                                 className="absolute mt-2 bg-custom-salmon text-white rounded-sm top-10 right-0 w-auto  py-2 shadow-lg ring-black ring-opacity-5 focus:outline-none"
                               >
@@ -186,7 +185,6 @@ export default function Navbar() {
                                   <NavLink
                                     key={item.name}
                                     to={item.to}
-                                    activeClassName="bg-gray-900 text-white"
                                     className={classNames(
                                       "text-customer-black hover:bg-custom-blue hover:text-custom-blue3",
                                       {
@@ -198,12 +196,12 @@ export default function Navbar() {
                                     {item.name}
                                   </NavLink>
                                 ))}
-                              </Disclosure.Panel>
+                              </Menu.Items>
                             </Transition>
                           </div>
                         </>
                       )}
-                    </Disclosure>
+                    </Menu>
                   </div>
                 </div>
               </div>
@@ -269,7 +267,7 @@ export default function Navbar() {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Cerrar sesión
+                            Cerrar Scesión
                           </a>
                         )}
                       </Menu.Item>
@@ -309,7 +307,6 @@ export default function Navbar() {
                     <Disclosure.Button
                       as={NavLink}
                       to="#"
-                      activeClassName="bg-gray-900 text-white"
                       className={classNames(
                         "text-custom-black hover:bg-custom-salmon hover:text-white",
                         "block rounded-md px-3 py-2 text-sm font-medium"
@@ -387,7 +384,6 @@ export default function Navbar() {
                           <NavLink
                             key={item.name}
                             to={item.to}
-                            activeClassName="bg-gray-900 text-white"
                             className={classNames(
                               "rounded-md text-custom-black hover:bg-custom-salmon hover:text-white ",
                               {

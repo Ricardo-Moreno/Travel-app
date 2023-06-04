@@ -38,13 +38,13 @@ const DestinationCard = ({ destination }) => {
           {destination.title}
         </h3>
         <p className="mt-1 text-sm text-gray-900">{destination.description}</p>
-        <p className="mt-1 text-sm font-bold text-custom-black">
-          Por {destination.duration}{" "}
+        <div className="mt-1 text-sm font-bold text-custom-black">
+          Por {destination.duration}
           <StartRating
             rating={destination.rating}
             onChange={handleRatingChange}
           />
-        </p>
+        </div>
         <button
           onClick={handleClick}
           className="mt-2 px-2 py-2 text-sm text-custom-salmon hover:text-white  hover:bg-custom-salmon rounded-sm focus:outline-none"
