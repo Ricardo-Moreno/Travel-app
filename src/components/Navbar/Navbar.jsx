@@ -10,7 +10,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 import logo from "../../assets/logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const categories = ["Playa", "Montañas", "Ciudad"];
 
@@ -73,7 +73,7 @@ export default function Navbar() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <NavLink
+                      <Link
                         key={item.name}
                         to={item.to}
                         className={classNames(
@@ -88,7 +88,7 @@ export default function Navbar() {
                           <MapIcon className="h-6 w-6" aria-hidden="true" />
                           {item.name}
                         </div>
-                      </NavLink>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -99,7 +99,7 @@ export default function Navbar() {
                       {({ open }) => (
                         <>
                           <Menu.Button
-                            as={NavLink}
+                            as={Link}
                             to="#"
                             className={classNames(
                               "text-customer-black hover:bg-custom-salmon hover:text-white",
@@ -126,7 +126,7 @@ export default function Navbar() {
                                 className="absolute mt-2 bg-custom-salmon text-white rounded-sm top-10 right-0 w-auto  py-2 shadow-lg ring-black ring-opacity-5 focus:outline-none z-50"
                               >
                                 {category.map((item) => (
-                                  <NavLink
+                                  <Link
                                     key={item.name}
                                     to={item.to}
                                     className={classNames(
@@ -138,7 +138,7 @@ export default function Navbar() {
                                     )}
                                   >
                                     {item.name}
-                                  </NavLink>
+                                  </Link>
                                 ))}
                               </Menu.Items>
                             </Transition>
@@ -155,7 +155,7 @@ export default function Navbar() {
                       {({ open }) => (
                         <>
                           <Menu.Button
-                            as={NavLink}
+                            as={Link}
                             to="#"
                             className={classNames(
                               "text-customer-black hover:bg-custom-salmon hover:text-white",
@@ -182,7 +182,7 @@ export default function Navbar() {
                                 className="absolute mt-2 bg-custom-salmon text-white rounded-sm top-10 right-0 w-auto  py-2 shadow-lg ring-black ring-opacity-5 focus:outline-none"
                               >
                                 {submenuItems.map((item) => (
-                                  <NavLink
+                                  <Link
                                     key={item.name}
                                     to={item.to}
                                     className={classNames(
@@ -194,7 +194,7 @@ export default function Navbar() {
                                     )}
                                   >
                                     {item.name}
-                                  </NavLink>
+                                  </Link>
                                 ))}
                               </Menu.Items>
                             </Transition>
@@ -305,7 +305,7 @@ export default function Navbar() {
                 {({ open }) => (
                   <>
                     <Disclosure.Button
-                      as={NavLink}
+                      as={Link}
                       to="#"
                       className={classNames(
                         "text-custom-black hover:bg-custom-salmon hover:text-white",
@@ -332,7 +332,7 @@ export default function Navbar() {
                     >
                       <Disclosure.Panel static>
                         {category.map((item) => (
-                          <NavLink
+                          <Link
                             key={item.name}
                             to={item.to}
                             className={classNames(
@@ -344,7 +344,7 @@ export default function Navbar() {
                             )}
                           >
                             {item.name}
-                          </NavLink>
+                          </Link>
                         ))}
                       </Disclosure.Panel>
                     </Transition>
@@ -357,7 +357,7 @@ export default function Navbar() {
                 {({ open }) => (
                   <>
                     <Disclosure.Button
-                      as={NavLink}
+                      as={Link}
                       to="#"
                       className={classNames(
                         "text-custom-black hover:bg-custom-salmon hover:text-white",
@@ -381,7 +381,7 @@ export default function Navbar() {
                     >
                       <Disclosure.Panel static>
                         {submenuItems.map((item) => (
-                          <NavLink
+                          <Link
                             key={item.name}
                             to={item.to}
                             className={classNames(
@@ -393,7 +393,7 @@ export default function Navbar() {
                             )}
                           >
                             {item.name}
-                          </NavLink>
+                          </Link>
                         ))}
                       </Disclosure.Panel>
                     </Transition>
