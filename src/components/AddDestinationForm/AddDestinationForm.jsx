@@ -61,9 +61,8 @@ export default function AddDestinationForm() {
     const queryDestination = collection(db, "destinations");
     addDoc(queryDestination, data)
       .then(() => {
-        setShowSuccessMessage(true); // Mostrar el mensaje de éxito
+        setShowSuccessMessage(true);
         setFormData({
-          // Restablecer los campos del formulario si es necesario
           availability: true,
           description: "",
           duration: "",
@@ -85,9 +84,9 @@ export default function AddDestinationForm() {
     if (showSuccessMessage) {
       const timeout = setTimeout(() => {
         setShowSuccessMessage(false);
-      }, 3000); // Ocultar el mensaje después de 3 segundos (3000 milisegundos)
+      }, 3000);
 
-      return () => clearTimeout(timeout); // Limpiar el temporizador si el componente se desmonta antes
+      return () => clearTimeout(timeout);
     }
   }, [showSuccessMessage]);
   return (
