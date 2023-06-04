@@ -58,7 +58,7 @@ export default function AddDestinationForm() {
     };
 
     const db = getFirestore();
-    const queryDestination = collection(db, "destinations");
+    const queryDestination = collection(db, "items");
     addDoc(queryDestination, data)
       .then(() => {
         setShowSuccessMessage(true);

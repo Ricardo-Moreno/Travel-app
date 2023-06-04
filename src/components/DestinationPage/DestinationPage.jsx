@@ -8,32 +8,23 @@ const DestinationPage = () => {
 
   useEffect(() => {
     const fetchDestinations = async () => {
-      const db = getFirestore();
-      const destinationsQuerySnapshot = await getDocs(collection(db, "items"));
-      const destinationsFormDataQuerySnapshot = await getDocs(
-        collection(db, "destinations")
-      );
+      try {
+        const db = getFirestore();
+        const itemsCollection = collection(db, "items");
+        const destinationsQuerySnapshot = await getDocs(itemsCollection);
 
-      const destinationsData = destinationsQuerySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        type: "destination",
-        ...doc.data(),
-      }));
-
-      const destinationsFormData = destinationsFormDataQuerySnapshot.docs.map(
-        (doc) => ({
+        const destinationsData = destinationsQuerySnapshot.docs.map((doc) => ({
           id: doc.id,
-          type: "destinationForm",
+          type: "destination",
           ...doc.data(),
-        })
-      );
+        }));
 
-      const combinedDestinations = [
-        ...destinationsData,
-        ...destinationsFormData,
-      ];
-      setDestinations(combinedDestinations);
-      setIsLoading(false);
+        setDestinations(destinationsData);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching destinations:", error);
+        setIsLoading(false);
+      }
     };
 
     fetchDestinations();

@@ -27,7 +27,7 @@ const UpdateObjectForm = () => {
     const objectId = formData.objectId.trim();
     try {
       const db = getFirestore();
-      const objectRef = doc(db, "destinations", objectId);
+      const objectRef = doc(db, "items", objectId);
       const objectDoc = await getDoc(objectRef);
 
       if (objectDoc.exists()) {
