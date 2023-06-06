@@ -35,7 +35,7 @@ export default function AddDestinationForm() {
     }
   };
 
-  const enviar = () => {
+  const send = () => {
     if (
       !formData.title ||
       !formData.description ||
@@ -306,7 +306,7 @@ export default function AddDestinationForm() {
         <button
           type="button"
           className="bg-custom-salmon hover:bg-custom-salmon text-white font-bold py-2 px-4 rounded-sm mt-4 my-12"
-          onClick={enviar}
+          onClick={send}
         >
           Guardar
         </button>
