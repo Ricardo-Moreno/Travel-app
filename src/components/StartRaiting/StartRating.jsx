@@ -18,7 +18,7 @@ const StartRating = ({ rating, onChange }) => {
       stars.push(
         <svg
           key={i}
-          className={`h-6 w-6 inline ${starClass}`}
+          className={`h-4 w-4 inline ${starClass}`}
           fill="none"
           stroke="currentColor"
           strokeLinecap="round"
