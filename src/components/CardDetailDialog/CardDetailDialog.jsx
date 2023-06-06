@@ -33,9 +33,9 @@ const CardDetailDialog = ({ destination, isOpen, onClose }) => {
           <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
             <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
               <div className="sm:flex sm:items-start">
-                <div className="sm:mr-6">
+                <div className="sm:mr-6 w-full">
                   <div className="w-full">
-                    <div className="relative">
+                    <div className="relative w-full">
                       <Carousel
                         showThumbs={false}
                         dynamicHeight={true}
@@ -48,7 +48,7 @@ const CardDetailDialog = ({ destination, isOpen, onClose }) => {
                             <img
                               src={image}
                               alt={title}
-                              className="h-56 w-full object-cover object-center"
+                              className="h-56 w-full object-cover object-center mx-auto"
                             />
                           </div>
                         ))}
