@@ -35,8 +35,8 @@ const Categories = () => {
         setDestinations(destinationsData);
         setIsLoading(false);
       } catch (error) {
-        console.error("Error fetching category destinations:", error);
         setIsLoading(false);
+        return "Error fetching category destinations:", error;
       }
     };
 
