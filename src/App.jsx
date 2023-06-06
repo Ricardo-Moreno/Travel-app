@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import AddDestinationForm from "./components/AddDestinationForm/AddDestinationForm";
@@ -24,6 +24,7 @@ function App() {
             path="/travelPrueba/category/:category"
             element={<Categories />}
           />
+          <Route path="/*" element={<Navigate to="/travelPrueba/" replace />} />
         </Routes>
       </div>
     </BrowserRouter>
