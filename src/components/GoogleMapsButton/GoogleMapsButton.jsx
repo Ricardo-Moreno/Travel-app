@@ -17,7 +17,7 @@ const GoogleMapsButton = ({ location }) => {
         const { lat, lng } = results[0].geometry.location;
         setCenter({ lat: lat(), lng: lng() });
       } else {
-        console.error("Error geocoding location:", status);
+        return "Error geocoding location:", status;
       }
     });
   }, [location]);
