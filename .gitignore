@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 fireBase
+configFireBase.jsx
 
 # Editor directories and files
 .vscode/*
