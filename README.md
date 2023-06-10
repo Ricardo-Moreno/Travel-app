@@ -1,7 +1,7 @@
                                                                     
 
 
-                                                  Proyecto de Viajes  "WORLD"
+                                  Proyecto de Viajes  "WORLD"
  
  
 Proyecto de Viajes "World", una aplicación web creada utilizando React.js, Tailwind CSS, Firebase y la API de Google Maps. 
